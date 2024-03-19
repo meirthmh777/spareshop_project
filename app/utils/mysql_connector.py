@@ -1,9 +1,9 @@
 import os
 
-username = os.getenv['DATABASE_USERNAME']
-password = os.getenv['DATABASE_PASSWORD']
-host_url = os.getenv['DATABASE_URL']
-db_name = os.getenv['DATABASE_NAME']
+username = os.getenv('DATABASE_USERNAME')
+password = os.getenv('DATABASE_PASSWORD')
+host_url = os.getenv('DATABASE_URL')
+db_name = os.getenv('DATABASE_NAME')
 
 print("connecting to MySQL Database")
 
