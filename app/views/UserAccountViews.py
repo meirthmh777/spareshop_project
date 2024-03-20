@@ -4,12 +4,12 @@ from app.schemas.UserAccountSchemas import UserResponseSchemas, UserBaseSchemas,
 from app.models.UserAccountModel import UserModel
 from app.utils.db import db
 from sqlalchemy.exc import SQLAlchemyError
+from flask_jwt_extended import jwt_required
 
+blp = Blueprint("users", __name__, description="""user account management endpoint""")
 
-blp = Blueprint("user", __name__, description="""user account management endpoint""")
-
-@blp.route('/user')
-class UserView(MethodView):
+@blp.route('/users')
+class UsersView(MethodView):
     @blp.arguments(UserBaseSchemas)
     @blp.response(201, UserResponseSchemas)
     def post(self, item_data):
@@ -31,6 +31,46 @@ class UserView(MethodView):
             abort(500, message="An error occurred while inserting new user.")
         return new_user_register
     
+    @blp.response(200, UserResponseSchemas(many=True))
+    def get(self):
+        """retrieve users data"""
+        get_all_users_data = UserModel.query.all()
+        return get_all_users_data
 
+@blp.route('/users/<string:user_id>')
+class UserView(MethodView):
+    @jwt_required
+    @blp.response(200, UserResponseSchemas)
+    def get(self, user_id):
+        """retrieve user data based on it's id"""
+        get_user_by_id = UserModel.query.get(user_id)
+        return get_user_by_id
 
-
+    @jwt_required
+    @blp.arguments(UserUpdateSchemas)
+    @blp.response(201, UserResponseSchemas)
+    def put(self, item_data, user_id):
+        """update user data by user id"""
+        username = item_data['username']
+        email = item_data['email']
+        password = item_data['password']
+        address = item_data['address']
+        update_user = UserModel.query.get_or_404(user_id)
+        try:
+            update_user.username = username
+            update_user.email = email
+            update_user.address = address
+            update_user.set_password(password)
+            db.session.commit()
+        except Exception as e:
+            print(e)
+            abort(500, message="An error occured while updating user data")
+        return update_user
+    
+    @jwt_required
+    def delete(self, user_id):
+        """delete user by it's id"""
+        delete_user = UserModel.query.get_or_404(user_id)
+        db.session.delete(delete_user)
+        db.session.commit()
+        return{"message" : "User is deleted!"}

@@ -16,7 +16,7 @@ I want to learn backend here using spareshop_project
 6. add UUID (Universally Unique Identifiers) `poetry add uuid`
 7. add passlib for hasing password `poetry add passlib`
 
-### Day 1 March 18th, 2024
+### Day 2 March 19th, 2024
 
 1. set up password in buyer and shop account model.
 2. create buyer and shop account schemas:
@@ -31,3 +31,16 @@ I want to learn backend here using spareshop_project
    - `poetry run flask db init`
    - `poetry run flask db migrate -m "try migration"`
    - `poetry run flask db upgrade`
+
+### Day 3 March 20th, 2024
+
+1. Create get, put and delete methods in userview query by it's id
+2. using jwt to secure data
+   - `poetry add Flask-JWT-Extended`
+
+### How to run this project
+
+1. create virtual environment : cntrl+shift+p, >Python: Create Environment, venv, create venv based on recommendation. or use `poetry config virtualenvs.in-project true`
+2. set up virtual environment: `poetry shell`
+3. install all dependencies : `poetry install`
+4. run this project : `poetry run flask run`

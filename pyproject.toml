@@ -17,6 +17,7 @@ flask-smorest = "^0.44.0"
 flask-migrate = "^4.0.7"
 sqlalchemy = "^2.0.28"
 mysql-connector-python = "^8.3.0"
+flask-jwt-extended = "^4.6.0"
 
 
 [build-system]

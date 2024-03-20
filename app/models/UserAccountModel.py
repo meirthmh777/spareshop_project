@@ -1,6 +1,6 @@
 from app.utils.db import db
 from sqlalchemy.orm import mapped_column
-from sqlalchemy import Integer, String, DateTime, func
+from sqlalchemy import String, DateTime, func
 from datetime import datetime
 from uuid import uuid4
 from passlib.hash import pbkdf2_sha256
