@@ -6,7 +6,9 @@ from app.utils.db import db
 from sqlalchemy.exc import SQLAlchemyError
 from flask_jwt_extended import jwt_required
 
-blp = Blueprint("users", __name__, description="""user account management endpoint""")
+blp = Blueprint("users", __name__, description=
+                """user account management endpoint"""
+                )
 
 @blp.route('/users')
 class UsersView(MethodView):
@@ -39,14 +41,14 @@ class UsersView(MethodView):
 
 @blp.route('/users/<string:user_id>')
 class UserView(MethodView):
-    @jwt_required
+    # @jwt_required
     @blp.response(200, UserResponseSchemas)
     def get(self, user_id):
         """retrieve user data based on it's id"""
         get_user_by_id = UserModel.query.get(user_id)
         return get_user_by_id
 
-    @jwt_required
+    # @jwt_required
     @blp.arguments(UserUpdateSchemas)
     @blp.response(201, UserResponseSchemas)
     def put(self, item_data, user_id):
@@ -67,7 +69,7 @@ class UserView(MethodView):
             abort(500, message="An error occured while updating user data")
         return update_user
     
-    @jwt_required
+    # @jwt_required
     def delete(self, user_id):
         """delete user by it's id"""
         delete_user = UserModel.query.get_or_404(user_id)

@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 from app.utils.db import db
 from app.utils.mysql_connector import my_sql_string
 from app.views.UserAccountViews import blp as UserAccountView
-
+from app.views.ShopAccountViews import blp as ShopAccountView
 
 
 load_dotenv()
@@ -31,6 +31,7 @@ migrate = Migrate(app, db)
 
 # register blueprints
 api.register_blueprint(UserAccountView)
+api.register_blueprint(ShopAccountView)
 
 
 @app.route('/')

@@ -38,9 +38,19 @@ I want to learn backend here using spareshop_project
 2. using jwt to secure data
    - `poetry add Flask-JWT-Extended`
 
+### Day 4 March 21th, 2024
+
+1. create foreign key in shop.user_id table references to user.id
+2. CONCEPT IS:
+   - one user can have one shop account, that is why one user_id in shop table references to id in user table.
+3. create post method in shop view that registered user creating new shop account with foreign key in shop.user_id references to user.id
+4. correcting some errors like missing 1 argument and "Could not initialize target column for ForeignKey 'user.user_id' on table 'shop': table 'user' has no column named 'user_id'"
+
 ### How to run this project
 
 1. create virtual environment : cntrl+shift+p, >Python: Create Environment, venv, create venv based on recommendation. or use `poetry config virtualenvs.in-project true`
 2. set up virtual environment: `poetry shell`
 3. install all dependencies : `poetry install`
 4. run this project : `poetry run flask run`
+
+### ~ GOD ALWAYS PROVIDES, HE'S ROOTING FOR YOU.
