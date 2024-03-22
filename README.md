@@ -12,16 +12,16 @@ I want to learn backend here using spareshop_project
 3. set up flask `poetry add flask`
 4. create ./app/utils/db.py and mysql_connector.py modules to connect with database:
    - add Flask-SQLAlchemy `poetry add Flask-SQLAlchemy`
-5. create buyer and shop models
+5. create user and shop models
 6. add UUID (Universally Unique Identifiers) `poetry add uuid`
 7. add passlib for hasing password `poetry add passlib`
 
 ### Day 2 March 19th, 2024
 
-1. set up password in buyer and shop account model.
-2. create buyer and shop account schemas:
+1. set up password in user and shop account model.
+2. create user and shop account schemas:
    - using masrhmallow for shemas. marshmallow schemas can be used to: Validate input data. Deserialize input data to app-level objects. https://marshmallow.readthedocs.io/en/stable/ `poetry add marshmallow`
-3. create buyer account view post method
+3. create user account view post method
    - using flask-smorest `poetry add flask-smorest` as database-agnostic framework library for creating REST APIs.
 4. read https://flask-smorest.readthedocs.io/en/latest/openapi.html
 5. install `poetry add mysql-connector-python`
@@ -46,6 +46,13 @@ I want to learn backend here using spareshop_project
 3. create post method in shop view that registered user creating new shop account with foreign key in shop.user_id references to user.id
 4. correcting some errors like missing 1 argument and "Could not initialize target column for ForeignKey 'user.user_id' on table 'shop': table 'user' has no column named 'user_id'"
 
+### Day 5 March 22th, 2024
+
+1. create get method to retrieve all shops. encounter error where thunder clinet response with empty object {}. turns out bcs of my response schema doesn't have argument many=True.
+2. encountering error 'dict' object has no attribute 'address' it occurs when shop_data.address = address it should be update_shop_data.address = address
+3. TypeError: int() argument must be a string, a bytes-like object or a real number, not 'SchemaMeta' ini kalau kurang response ny 201
+4. create other methods like get, put and delete shop account by it's id.
+
 ### How to run this project
 
 1. create virtual environment : cntrl+shift+p, >Python: Create Environment, venv, create venv based on recommendation. or use `poetry config virtualenvs.in-project true`
@@ -54,3 +61,5 @@ I want to learn backend here using spareshop_project
 4. run this project : `poetry run flask run`
 
 ### ~ GOD ALWAYS PROVIDES, HE'S ROOTING FOR YOU.
+
+#### another day, another error, another slay!
