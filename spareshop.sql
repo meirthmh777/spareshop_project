@@ -51,5 +51,37 @@ ADD shopname VARCHAR(100);
 ALTER TABLE shop
 MODIFY COLUMN shopname VARCHAR(100) NOT NULL UNIQUE;
 
+-- March 25th, product table already added
+CREATE TABLE product (
+	id VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(100) NOT NULL,
+    price DECIMAL (20,2) NOT NULL,
+    stock DECIMAL (10,2) NOT NULL,
+	description VARCHAR(100),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- March 25th, 2024 not yet commit. still trying to figure out the concept
+CREATE TABLE transaction_type (
+	id VARCHAR(100) PRIMARY KEY NOT NULL UNIQUE,
+    transaction_name VARCHAR(100)
+);
+-- March 25th, 2024 not yet commit. still trying to figure out the concept
+CREATE TABLE transaction (
+	id VARCHAR(100) PRIMARY KEY NOT NULL UNIQUE,
+    from_user_id VARCHAR(100) NOT NULL UNIQUE,
+    to_shop_id VARCHAR(100) NOT NULL UNIQUE,
+    ordered_product_id VARCHAR(100) NOT NULL UNIQUE,
+    transaction_type_id VARCHAR(100) NOT NULL UNIQUE,
+	amount_of_product_ordered DECIMAL(10,2) NOT NULL,
+    total_price DECIMAL(20,2),
+    description VARCHAR(100),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (from_user_id) REFERENCES user(id),
+    FOREIGN KEY (to_shop_id) REFERENCES shop(id),
+    FOREIGN KEY (ordered_product_id) REFERENCES product(id),
+    FOREIGN KEY (transaction_type_id) REFERENCES transaction_type(id)
+);
 
 SELECT * FROM user;

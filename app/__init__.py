@@ -7,7 +7,7 @@ from app.utils.db import db
 from app.utils.mysql_connector import my_sql_string
 from app.views.UserAccountViews import blp as UserAccountView
 from app.views.ShopAccountViews import blp as ShopAccountView
-
+from app.views.ProductViews import blp as ProductView
 
 load_dotenv()
 
@@ -32,6 +32,7 @@ migrate = Migrate(app, db)
 # register blueprints
 api.register_blueprint(UserAccountView)
 api.register_blueprint(ShopAccountView)
+api.register_blueprint(ProductView)
 
 
 @app.route('/')

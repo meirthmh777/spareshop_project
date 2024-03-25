@@ -4,7 +4,7 @@ I want to learn backend here using spareshop_project
 
 ## documentation day by day
 
-### Day 1 March 18th, 2024
+### Day 1 Monday March 18th, 2024
 
 1. set up new app module `poetry new app`
 
@@ -16,7 +16,7 @@ I want to learn backend here using spareshop_project
 6. add UUID (Universally Unique Identifiers) `poetry add uuid`
 7. add passlib for hasing password `poetry add passlib`
 
-### Day 2 March 19th, 2024
+### Day 2 Tuesday March 19th, 2024
 
 1. set up password in user and shop account model.
 2. create user and shop account schemas:
@@ -32,13 +32,13 @@ I want to learn backend here using spareshop_project
    - `poetry run flask db migrate -m "try migration"`
    - `poetry run flask db upgrade`
 
-### Day 3 March 20th, 2024
+### Day 3 Wednesday March 20th, 2024
 
 1. Create get, put and delete methods in userview query by it's id
 2. using jwt to secure data
    - `poetry add Flask-JWT-Extended`
 
-### Day 4 March 21th, 2024
+### Day 4 Thursday March 21th, 2024
 
 1. create foreign key in shop.user_id table references to user.id
 2. CONCEPT IS:
@@ -46,12 +46,21 @@ I want to learn backend here using spareshop_project
 3. create post method in shop view that registered user creating new shop account with foreign key in shop.user_id references to user.id
 4. correcting some errors like missing 1 argument and "Could not initialize target column for ForeignKey 'user.user_id' on table 'shop': table 'user' has no column named 'user_id'"
 
-### Day 5 March 22th, 2024
+### Day 5 Friday March 22th, 2024
 
 1. create get method to retrieve all shops. encounter error where thunder clinet response with empty object {}. turns out bcs of my response schema doesn't have argument many=True.
 2. encountering error 'dict' object has no attribute 'address' it occurs when shop_data.address = address it should be update_shop_data.address = address
 3. TypeError: int() argument must be a string, a bytes-like object or a real number, not 'SchemaMeta' ini kalau kurang response ny 201
 4. create other methods like get, put and delete shop account by it's id.
+
+### Day 6 Monday March 25th, 2024
+
+1. create product table
+2. create transaction_type table
+3. create transaction table which has so many foreign key yeeahh
+4. create POST and GET productsview for '/products' route and PUT, GET, DELETE in '/products/<string:product_id>' route. encountering some errors:
+   - get_all_products = ProductModel.query.get(all) it must be query.all()
+   - SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in position 9-10: truncated \UXXXXXXXX escape turns out it cannot generate comment lines in certain positions
 
 ### How to run this project
 
