@@ -22,3 +22,8 @@ class UserUpdateSchemas(Schema):
     email = fields.Str()
     password = fields.Str()
     address = fields.Str()
+
+class UserLoginSchemas(Schema):
+    username = fields.Str()
+    email = fields.Str()
+    password = fields.Str()

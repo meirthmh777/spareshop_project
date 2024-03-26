@@ -62,6 +62,14 @@ I want to learn backend here using spareshop_project
    - get_all_products = ProductModel.query.get(all) it must be query.all()
    - SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in position 9-10: truncated \UXXXXXXXX escape turns out it cannot generate comment lines in certain positions
 
+### Day 7 Tuesday March 26th, 2024
+
+1. create LoginView.py and make sure all of endpoints with @jwt_required work in userview.py.
+2. RuntimeError: You must initialize a JWTManager with this flask application before using this method. I should Initialize JWTManager in init.py
+3. RuntimeError: JWT_SECRET_KEY or flask SECRET_KEY must be set when using symmetric algorithm "HS256". I should initialize app.config["JWT_SECRET_KEY"] = "secret key random string" in init.py
+4. hit the login route in thunder client then boom I got the access token.
+5. TypeError: jwt_required.<locals>.wrapper() got an unexpected keyword argument 'user_id' turns out I use @jwt_required is a call back so it should be @jwt_required(). like @jwt_required() with () it will pass the arguments to the decorator.
+
 ### How to run this project
 
 1. create virtual environment : cntrl+shift+p, >Python: Create Environment, venv, create venv based on recommendation. or use `poetry config virtualenvs.in-project true`

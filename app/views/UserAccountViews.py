@@ -4,7 +4,7 @@ from app.schemas.UserAccountSchemas import UserResponseSchemas, UserBaseSchemas,
 from app.models.UserAccountModel import UserModel
 from app.utils.db import db
 from sqlalchemy.exc import SQLAlchemyError
-# from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required
 
 blp = Blueprint("users", __name__, description=
                 """user account management endpoint"""
@@ -43,14 +43,14 @@ class UsersView(MethodView):
 
 @blp.route('/users/<string:user_id>')
 class UserView(MethodView):
-    # @jwt_required
+    @jwt_required()
     @blp.response(200, UserResponseSchemas)
     def get(self, user_id):
         """retrieve user data by it's id"""
         get_user_by_id = UserModel.query.get(user_id)
         return get_user_by_id
 
-    # @jwt_required
+    @jwt_required()
     @blp.arguments(UserUpdateSchemas)
     @blp.response(201, UserResponseSchemas)
     def put(self, user_data, user_id):
@@ -59,7 +59,7 @@ class UserView(MethodView):
         email = user_data['email']
         password = user_data['password']
         address = user_data['address']
-        update_user = UserModel.query.get_or_404(user_id)
+        update_user:UserModel = UserModel.query.get_or_404(user_id)
         if UserModel.query.filter_by(username=username).first():
             abort(400, message="Username already exists. Try another username!")
         if UserModel.query.filter_by(email=email).first():
@@ -75,7 +75,7 @@ class UserView(MethodView):
             abort(500, message="An error occured while updating user data")
         return update_user
     
-    # @jwt_required
+    @jwt_required()
     def delete(self, user_id):
         """delete user by it's id"""
         delete_user_account = UserModel.query.get_or_404(user_id)

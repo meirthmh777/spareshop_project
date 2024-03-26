@@ -85,3 +85,4 @@ CREATE TABLE transaction (
 );
 
 SELECT * FROM user;
+SELECT * FROM shop;
